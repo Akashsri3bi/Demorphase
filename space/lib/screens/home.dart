@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:model_viewer_plus/model_viewer_plus.dart';
+import 'package:space/screens/game_screen.dart';
+import 'package:space/screens/home_screen.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -11,7 +13,7 @@ class _HomeState extends State<Home> {
   int pageIndex = 0;
   final pages = [
     const Home_Screen(),
-    const Home_Screen(),
+    const Game_Screen(),
     const Home_Screen(),
   ];
 
@@ -41,15 +43,32 @@ class _HomeState extends State<Home> {
                       pageIndex = 0;
                     });
                   },
-                  padding: EdgeInsets.zero,
+                  iconSize: 38,
                   icon: pageIndex == 0
+                      ? Image.asset(
+                          //On clicked
+                          'assets/gameon.png',
+                          color: Colors.white,
+                        )
+                      : Image.asset(
+                          'assets/gameoff.png',
+                        )),
+              IconButton(
+                  enableFeedback: false,
+                  onPressed: () {
+                    setState(() {
+                      pageIndex = 1;
+                    });
+                  },
+                  padding: EdgeInsets.zero,
+                  icon: pageIndex == 1
                       ? Image.asset(
                           //For clicked
                           'assets/overview.png',
                           height: 38,
                         )
                       : Image.asset(
-                          'assets/overview.png',
+                          'assets/overviewoff.png',
                           height: 38,
                         )),
               IconButton(
@@ -63,57 +82,16 @@ class _HomeState extends State<Home> {
                   icon: pageIndex == 2
                       ? Image.asset(
                           //On clicked
-                          'assets/overview.png',
+                          'assets/setting.png',
                           color: Colors.white,
                         )
                       : Image.asset(
-                          'assets/overview.png',
-                        )),
-              IconButton(
-                  enableFeedback: false,
-                  onPressed: () {
-                    setState(() {
-                      pageIndex = 2;
-                    });
-                  },
-                  iconSize: 38,
-                  icon: pageIndex == 2
-                      ? Image.asset(
-                          //On clicked
-                          'assets/overview.png',
-                          color: Colors.white,
-                        )
-                      : Image.asset(
-                          'assets/overview.png',
+                          'assets/setting.png',
                         )),
             ],
           ),
         ),
       ),
     );
-  }
-}
-
-class Home_Screen extends StatelessWidget {
-  const Home_Screen({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(children: [
-      Center(
-        child: Container(
-          color: Colors.transparent,
-          height: 200,
-          width: 200,
-          child: ModelViewer(
-            src: 'assets/james.glb',
-            alt: "A 3D model of an astronaut",
-            autoRotate: true,
-          ),
-        ),
-      ),
-    ]);
   }
 }
