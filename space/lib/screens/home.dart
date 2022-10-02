@@ -10,10 +10,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int pageIndex = 0;
+  int pageIndex = 1;
   final pages = [
-    const Home_Screen(),
     const Game_Screen(),
+    const Home_Screen(),
     const Home_Screen(),
   ];
 
